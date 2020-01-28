@@ -78,6 +78,12 @@ ax.annotate('mode', xy=(mode_val, 0.008), xytext=(mode_val+10, 0.010),
 plt.axvline(mode_val, linestyle='dashed', linewidth=2)
 plt.show()
 
+if(mean_val > median_val):
+    print("Positive Skew")
+
+elif(mean_val < median_val):
+    print("Negative Skew")
+
 sns.rugplot(df['Beverages'])
 plt.show()
 
@@ -133,7 +139,40 @@ ax = fig.add_subplot(111, polar=True)
 ax.plot(angles, stats, 'o-', linewidth=2)
 ax.fill(angles, stats, alpha=0.25)
 ax.set_thetagrids(angles * 180/np.pi, labels)
+ax.set_title([df.loc[0,"Shop"]])
+ax.grid(True)
+plt.show()
+
+stats=np.concatenate((stats,[stats[1]]))
+angles=np.concatenate((angles,[angles[1]]))
+fig=plt.figure()
+ax = fig.add_subplot(111, polar=True)
+ax.plot(angles, stats, 'o-', linewidth=2)
+ax.fill(angles, stats, alpha=0.25)
+ax.set_thetagrids(angles * 180/np.pi, labels)
 ax.set_title([df.loc[1,"Shop"]])
+ax.grid(True)
+plt.show()
+
+stats=np.concatenate((stats,[stats[2]]))
+angles=np.concatenate((angles,[angles[2]]))
+fig=plt.figure()
+ax = fig.add_subplot(111, polar=True)
+ax.plot(angles, stats, 'o-', linewidth=2)
+ax.fill(angles, stats, alpha=0.25)
+ax.set_thetagrids(angles * 180/np.pi, labels)
+ax.set_title([df.loc[2,"Shop"]])
+ax.grid(True)
+plt.show()
+
+stats=np.concatenate((stats,[stats[3]]))
+angles=np.concatenate((angles,[angles[3]]))
+fig=plt.figure()
+ax = fig.add_subplot(111, polar=True)
+ax.plot(angles, stats, 'o-', linewidth=2)
+ax.fill(angles, stats, alpha=0.25)
+ax.set_thetagrids(angles * 180/np.pi, labels)
+ax.set_title([df.loc[3,"Shop"]])
 ax.grid(True)
 plt.show()
 
@@ -173,16 +212,16 @@ print("\nQuestion11")
 x = np.linspace(-3, 3, 100, endpoint=True)
 y = np.linspace(-3, 3, 100, endpoint=True)
 X,Y = np.meshgrid(x,y)
-Z1 = X**2 + Y**2
-for i in range(100):
-    for j in range(100):        
-            Z[i][j] = math.sqrt(Z1[i][j])
+Z = X**2 + Y**2
 
+for i in range(100):
+    for j in range(100):
+        Z[i][j] = math.sqrt(Z[i][j])
+                
 fig, ax = plt.subplots(figsize=(6,6))
 
 ax.contour(X,Y,Z)
 plt.show()
-
     
 
 
